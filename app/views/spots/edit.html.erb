@@ -1,0 +1,8 @@
+
+<%= render partial: "form", locals: {spot: @spot} %>
+
+<br>
+
+<%= form_tag(spot_path(@spot), method: "delete") do %>
+<input type="submit" value="Delete" class="button is-danger">
+<% end %>

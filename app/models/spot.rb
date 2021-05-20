@@ -1,3 +1,3 @@
-class Spot
-    belongs_to :user
+class Spot < ApplicationRecord
+    #belongs_to :user
 end

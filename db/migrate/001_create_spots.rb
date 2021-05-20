@@ -6,7 +6,7 @@ class CreateSpots < ActiveRecord::Migration[6.0]
       t.string :location_info
       t.string :obstacles
 
-      t.integer :user_id
+      t.references :user, null: false, foreign_key: true
 
       t.timestamps
     end

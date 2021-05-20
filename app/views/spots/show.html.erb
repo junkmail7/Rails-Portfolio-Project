@@ -1,5 +1,5 @@
-<p>Spot name: </p>
-<p>location: </p>
-<p>instructions on how to find:</p>
-<p>obstacles: </p>
-<p>logged by: </p>
+<p>Spot name: <%= @spot.name %></p>
+<p>location: <%= @spot.location %></p>
+<p>instructions on how to find: <%= @spot.location_info %></p>
+<p>obstacles: <%= @spot.obstacles %></p>
+<p>logged by: <%= current_user.email %></p>

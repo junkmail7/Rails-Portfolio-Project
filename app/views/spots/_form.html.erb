@@ -1,0 +1,13 @@
+<h3>Spot Form</h3>
+<%= form_for(spot) do |f| %>
+  <label>Spot Name:</label><br>
+  <%= f.text_field :name %><br>
+  <label>Location:</label><br>
+  <%= f.text_field :location %><br>
+  <label>Additonal Location Info:</label><br>
+  <%= f.text_field :location_info %><br>
+  <label>Obstacles:</label><br>
+  <%= f.text_field :obstacles %><br>
+
+  <%= f.submit %>
+<% end %>

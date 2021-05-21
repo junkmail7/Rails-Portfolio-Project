@@ -1,3 +1,3 @@
 class Comment
-    belong_to :spot
+    belongs_to :spot
 end

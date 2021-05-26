@@ -1,0 +1,9 @@
+<h3>Obstacle Form</h3>
+<%= form_for(obstacle) do |f| %>
+  <label>Obstacle Name:</label><br>
+  <%= f.text_field :name %><br>
+  <label>Difficulty rating:</label><br>
+  <%= f.text_field :difficulty_rating %><br>
+
+  <%= f.submit %>
+<% end %>

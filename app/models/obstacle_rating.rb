@@ -1,3 +1,3 @@
-class Obstacle_Rating < ApplicationRecord
+class ObstacleRating < ApplicationRecord
     belongs_to :obstacle
 end

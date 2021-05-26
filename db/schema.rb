@@ -12,6 +12,31 @@
 
 ActiveRecord::Schema.define(version: 2021_05_10_202424) do
 
+  create_table "comments", force: :cascade do |t|
+    t.string "comment_text"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "obstacle_ratings", force: :cascade do |t|
+    t.string "rating"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_obstacle_ratings_on_user_id"
+  end
+
+  create_table "obstacles", force: :cascade do |t|
+    t.string "name"
+    t.string "difficulty_rating"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_obstacles_on_user_id"
+  end
+
   create_table "spots", force: :cascade do |t|
     t.string "name"
     t.string "location"
@@ -35,5 +60,8 @@ ActiveRecord::Schema.define(version: 2021_05_10_202424) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "comments", "users"
+  add_foreign_key "obstacle_ratings", "users"
+  add_foreign_key "obstacles", "users"
   add_foreign_key "spots", "users"
 end

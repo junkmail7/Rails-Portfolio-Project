@@ -1,7 +1,31 @@
 <p>Spot name: <%= @spot.name %></p>
-<p>location: <%= @spot.location %></p>
-<p>instructions on how to find: <%= @spot.location_info %></p>
-<p>obstacles: <%= @spot.obstacles %></p>
-<p>logged by: <%= current_user.email %></p>
+<p>Location: <%= @spot.location %></p>
+<iframe width="400" height="200" frameborder="0" style="border:0"
+ src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDy82aDXTbTfoDHMBLYScvytaYseqY63uE&q=<%= @spot.location %>"
+ allowfullscreen>
+</iframe>
+<p>Instructions on how to find: <%= @spot.location_info %></p>
+<p>Obstacles: <ul>
+<% @spot.obstacles.each do |o| %>
+    <li><%= link_to o.name, spot_obstacle_path(o.spot, o) %> </li>
+<% end %>
+</ul></p>
+<p>Logged by: <%= User.find(@spot.user_id).email %></p>
+<% unless @spot.user_id != current_user.id %>
 <%= link_to "Edit Spot", edit_spot_path(@spot) %> <br>
+<p>Add a <%= link_to "New Obstacle", new_spot_obstacle_path(@spot) %></p>
+<% end %>
 
+<strong>Comment:</strong>
+<%= form_tag(comments_path, method: "post") do %>
+    <%= hidden_field_tag "spot_id", @spot.id %>
+    <textarea name="comment_text", rows="3", cols="40"></textarea><br>
+    <input type="submit" value="Submit Comment" class="button is-primary">
+<% end %>
+<br>
+
+<% @comments.each do |c| %>
+    <%= User.find(c.user_id).email %> - 
+    <%= c.comment_text %>
+    </br>
+<% end %>

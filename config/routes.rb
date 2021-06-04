@@ -1,9 +1,12 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+  resources :obstacle_ratings
+  resources :comments
   resources :obstacles
   resources :spots do
-    resources :obstacles, only: [:show, :new]
+    resources :obstacles
   end
+  get 'spots/most-comments' => 'spots#show'
   root to: "home#index"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

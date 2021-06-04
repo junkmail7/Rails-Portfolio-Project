@@ -4,6 +4,6 @@
   <%= f.text_field :name %><br>
   <label>Difficulty rating:</label><br>
   <%= f.text_field :difficulty_rating %><br>
-
+  <%= hidden_field_tag "obstacle[spot_id]", obstacle.spot_id %>
   <%= f.submit %>
 <% end %>

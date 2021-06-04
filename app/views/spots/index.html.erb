@@ -1,3 +1,4 @@
 <% @spots.each do |s| %>
     <%= link_to s.name, spot_path(s) %> <br>
+    <%=s.obstacles.length%> Obstacle(s) | <%=s.users.length%> Comment(s) | <%= s.obstacle_ratings.length %> Obstacle Difficulty Rating(s) <br>
 <% end %>

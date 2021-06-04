@@ -15,11 +15,19 @@ class SpotsController < ApplicationController
   end
 
   def show
-    @spot = Spot.find(params[:id])
+    if params[:id] == "most-comments"
+      @spot = Spot.find(Comment.mostcomms.spot_id) 
+    else
+      @spot = Spot.find(params[:id])
+    end
+    @comments = @spot.comments.reverse
   end
 
   def edit
     @spot = Spot.find(params[:id])
+    if @spot.user_id != current_user.id
+      redirect_to spot_path(@spot)
+    end
   end
 
   def update
@@ -32,6 +40,7 @@ class SpotsController < ApplicationController
   def destroy
     @spot = Spot.find(params[:id])
     @spot.destroy
+    #Comment.where(spot_id == params[:id]).destroy
     redirect_to spots_url
   end
 

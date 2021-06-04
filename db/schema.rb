@@ -10,30 +10,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_10_202424) do
+ActiveRecord::Schema.define(version: 2021_06_02_232509) do
 
   create_table "comments", force: :cascade do |t|
     t.string "comment_text"
-    t.bigint "user_id", null: false
+    t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "spot_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "obstacle_ratings", force: :cascade do |t|
     t.string "rating"
-    t.bigint "user_id", null: false
+    t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "obstacle_id"
     t.index ["user_id"], name: "index_obstacle_ratings_on_user_id"
   end
 
   create_table "obstacles", force: :cascade do |t|
     t.string "name"
     t.string "difficulty_rating"
-    t.bigint "user_id", null: false
+    t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "spot_id"
     t.index ["user_id"], name: "index_obstacles_on_user_id"
   end
 
@@ -42,7 +45,7 @@ ActiveRecord::Schema.define(version: 2021_05_10_202424) do
     t.string "location"
     t.string "location_info"
     t.string "obstacles"
-    t.bigint "user_id", null: false
+    t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_spots_on_user_id"
@@ -56,6 +59,8 @@ ActiveRecord::Schema.define(version: 2021_05_10_202424) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "provider"
+    t.string "uid"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

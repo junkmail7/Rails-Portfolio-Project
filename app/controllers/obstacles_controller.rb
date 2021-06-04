@@ -1,47 +1,48 @@
 class ObstaclesController < ApplicationController
-  def index
-    @obstacle = obstacle.all
-  end
 
   def new
-    @obstacle = obstacle.new
+    @obstacle = Obstacle.new
+    @obstacle.spot = Spot.find(params[:spot_id])
   end
 
   def create
-    @obstacle = obstacle.new(obstacle_params)
+    @obstacle = Obstacle.new(obstacle_params)
     @obstacle.user_id = current_user.id
-    @obstacle.save
+    @obstacle.save!
     redirect_to obstacle_path(@obstacle)
   end
 
   def show
-    @obstacle = obstacle.find(params[:id])
+    @obstacle = Obstacle.find(params[:id])
+    @obstacleratings = @obstacle.obstacle_ratings.reverse
   end
 
   def edit
-    @obstacle = obstacle.find(params[:id])
+    @obstacle = Obstacle.find(params[:id])
+    if @obstacle.user_id != current_user.id
+      redirect_to obstacle_path(@obstacle)
+    end
   end
 
   def update
-    @obstacle = obstacle.find(params[:id])
+    @obstacle = Obstacle.find(params[:id])
     @obstacle.update(obstacle_params)
     @obstacle.save
     redirect_to @obstacle
   end
 
   def destroy
-    @obstacle = obstacle.find(params[:id])
+    @obstacle = Obstacle.find(params[:id])
     @obstacle.destroy
-    redirect_to obstacle_url
+    redirect_to spot_path(@obstacle.spot)
   end
 
   private
 
   def obstacle_params
       params.require(:obstacle).permit(   :name,
-                                      :location,
-                                      :location_info,
-                                      :obstacle)
+                                      :difficulty_rating,
+                                      :spot_id)
   end
 
 end

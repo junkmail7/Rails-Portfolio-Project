@@ -1,5 +1,21 @@
-<p>Spot name: <%= @spot.name %></p>
-<p>location: <%= @spot.location %></p>
-<p>instructions on how to find: <%= @spot.location_info %></p>
-<p>obstacles: <%= @spot.obstacles %></p>
-<p>logged by: <%= current_user.email %></p>
+<p>Obstacle name: <%= @obstacle.name %></p>
+<p>Difficulty Rating: <%= @obstacle.difficulty_rating %></p>
+<p>Belongs to: <%= @obstacle.spot.name %></p>
+<p>Logged by: <%= User.find(@obstacle.user_id).email %></p>
+<% unless @obstacle.user_id != current_user.id %>
+<%= link_to "Edit Obstacle", edit_obstacle_path(@obstacle) %> <br>
+<% end %>
+
+<strong>Rate the difficulty:</strong>
+<%= form_tag(obstacle_ratings_path, method: "post") do %>
+    <%= hidden_field_tag "obstacle_id", @obstacle.id %>
+    <label for="points">(between 0 and 10):</label>
+<input type="range" id="points" name="rating" min="0" max="10">
+    <input type="submit" value="Submit Rating" class="button is-primary">
+<% end %>
+<br>
+
+<% @obstacleratings.each do |o| %> 
+    <%= o.rating %>
+    </br>
+<% end %>

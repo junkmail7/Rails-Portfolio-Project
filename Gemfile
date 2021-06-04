@@ -7,6 +7,14 @@ gem 'pry'
 
 gem 'webpacker'
 
+gem 'omniauth'
+
+gem 'omniauth-rails_csrf_protection'
+
+gem 'omniauth-facebook'
+
+gem 'google-maps'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6'
 # Use sqlite3 as the database for Active Record

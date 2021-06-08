@@ -6,3 +6,9 @@
 <%= form_tag(obstacle_path(@obstacle), method: "delete") do %>
 <input type="submit" value="Delete" class="button is-danger">
 <% end %>
+
+<% if flash[:errors] != nil %>
+<% flash[:errors].each do |e| %>
+    <li><%= e %></li>
+<% end %>
+<% end %>

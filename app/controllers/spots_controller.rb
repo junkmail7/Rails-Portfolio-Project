@@ -10,8 +10,13 @@ class SpotsController < ApplicationController
   def create
     @spot = Spot.new(spot_params)
     @spot.user_id = current_user.id
-    @spot.save
-    redirect_to spot_path(@spot)
+    if @spot.valid?
+      @spot.save
+      redirect_to spot_path(@spot)
+    else
+      flash[:errors] = @spot.errors.full_messages
+      render :new
+    end
   end
 
   def show
@@ -33,14 +38,18 @@ class SpotsController < ApplicationController
   def update
     @spot = Spot.find(params[:id])
     @spot.update(spot_params)
-    @spot.save
-    redirect_to @spot
+    if @spot.valid?
+      @spot.save
+      redirect_to @spot
+    else
+      flash[:errors] = @spot.errors.full_messages
+      render :edit
+    end
   end
 
   def destroy
     @spot = Spot.find(params[:id])
     @spot.destroy
-    #Comment.where(spot_id == params[:id]).destroy
     redirect_to spots_url
   end
 

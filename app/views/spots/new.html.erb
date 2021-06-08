@@ -1,2 +1,7 @@
 
 <%= render partial: "form", locals: {spot: @spot} %>
+<% if flash[:errors] != nil %>
+<% flash[:errors].each do |e| %>
+    <li><%= e %></li>
+<% end %>
+<% end %>

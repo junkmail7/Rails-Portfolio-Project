@@ -8,8 +8,13 @@ class ObstaclesController < ApplicationController
   def create
     @obstacle = Obstacle.new(obstacle_params)
     @obstacle.user_id = current_user.id
-    @obstacle.save!
-    redirect_to obstacle_path(@obstacle)
+    if @obstacle.valid?
+      @obstacle.save!
+      redirect_to obstacle_path(@obstacle)
+    else
+      flash[:errors] = @obstacle.errors.full_messages
+      render :new
+    end
   end
 
   def show
@@ -27,8 +32,13 @@ class ObstaclesController < ApplicationController
   def update
     @obstacle = Obstacle.find(params[:id])
     @obstacle.update(obstacle_params)
-    @obstacle.save
-    redirect_to @obstacle
+    if @obstacle.valid?
+      redirect_to @obstacle
+      @obstacle.save
+    else
+      flash[:errors] = @obstacle.errors.full_messages
+      render :edit
+    end
   end
 
   def destroy

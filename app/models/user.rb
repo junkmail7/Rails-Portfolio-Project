@@ -14,12 +14,6 @@ class User < ApplicationRecord
             user.provider = auth.provider
             user.uid = auth.uid
             user.email = auth.info.email
-      
-            if auth.info.username
-              user.name = auth.info.username
-            else
-              user.name = auth.info.name
-            end
             
             user.password = Devise.friendly_token[0,20]
           end

@@ -1,5 +1,5 @@
 <p>Obstacle name: <%= @obstacle.name %></p>
-<p>Difficulty Rating: <%= @obstacle.difficulty_rating %></p>
+<p>Creator's Difficulty Rating: <%= @obstacle.difficulty_rating %></p>
 <p>Belongs to: <%= @obstacle.spot.name %></p>
 <p>Logged by: <%= User.find(@obstacle.user_id).email %></p>
 <% unless @obstacle.user_id != current_user.id %>
@@ -15,7 +15,5 @@
 <% end %>
 <br>
 
-<% @obstacleratings.each do |o| %> 
-    <%= o.rating %>
-    </br>
-<% end %>
+<p>Average Difficulty Rating:</p>
+<%= @obstacle.avg %>

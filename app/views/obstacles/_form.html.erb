@@ -2,7 +2,7 @@
 <%= form_for(obstacle) do |f| %>
   <label>Obstacle Name:</label><br>
   <%= f.text_field :name %><br>
-  <label>Difficulty rating:</label><br>
+  <label>Difficulty rating (between 0 and 10):</label><br>
   <%= f.text_field :difficulty_rating %><br>
   <%= hidden_field_tag "obstacle[spot_id]", obstacle.spot_id %>
   <%= f.submit %>

@@ -9,9 +9,9 @@ gem 'webpacker'
 
 gem 'omniauth'
 
-gem 'omniauth-rails_csrf_protection'
-
 gem 'omniauth-facebook'
+
+gem 'omniauth-rails_csrf_protection'
 
 gem 'google-maps'
 

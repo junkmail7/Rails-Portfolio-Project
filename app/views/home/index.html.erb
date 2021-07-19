@@ -3,4 +3,9 @@
 </br>
 <% if current_user.present? %>
 <%= link_to "Check out the spot with the most comments", spots_most_comments_path %>
+<br>
+</br>
+<%= @user.email %>
+<p>has the most comments</p>
 <% end %>
+

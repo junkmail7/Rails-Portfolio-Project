@@ -19,4 +19,6 @@ class User < ApplicationRecord
           end
         end
 
+  scope :with_most_comments, -> {  joins(:comments).select('user_id, count(user_id) as count').group(:user_id).order('count desc').first }
+
 end

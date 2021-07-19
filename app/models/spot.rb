@@ -7,4 +7,6 @@ class Spot < ApplicationRecord
     validates :name, presence: true, uniqueness: true
     validates :location, presence: true, uniqueness: true
     validates :location_info, presence: true, uniqueness: true
+
+    scope :sorted_names, -> {  order('name') }
 end

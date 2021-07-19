@@ -7,6 +7,11 @@ class SpotsController < ApplicationController
     @spot = Spot.new
   end
 
+  def ordered
+    @spots = Spot.sorted_names
+    render :index
+  end
+
   def create
     @spot = Spot.new(spot_params)
     @spot.user_id = current_user.id
